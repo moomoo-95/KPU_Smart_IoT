@@ -2,3 +2,5 @@ Gyro: 자이로센서
 Moter: 서보 모터
 PIR: 적외선 센서(인체 모션감지 센서)
 Vibration: 진동 센서
+
+All: 전체 종합 센서
