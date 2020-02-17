@@ -302,7 +302,7 @@ File - Sync Project with Gradle Files 클릭
 
 
 
-
+//작동예시이므로 이주석 지워도 무방
         // ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
         Core.flip(matInput, matInput, 1);
 
