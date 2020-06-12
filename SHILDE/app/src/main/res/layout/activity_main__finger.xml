@@ -8,6 +8,188 @@
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
     android:background="#0068C8">
+    <LinearLayout
+        android:id="@+id/resultView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0068C8"
+        android:orientation="vertical"
+        tools:context=".multi_modal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/menu_ico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn"
+                android:layout_margin="20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="rla99tjr 님"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:layout_margin="20dp"
+                android:textColor="#ffffff"
+                android:textSize="26sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rectangle"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/user_id"
+                    android:text="rla99tjr 님 금고현황"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:textColor="#ffffff"
+                    android:textSize="28sp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_margin="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/sample_safe1"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="left"
+                        android:text="SA-1004"
+                        android:textSize="30sp"
+                        android:textColor="#ffffff"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="left"
+                        android:text="등록일 : 2019.08.04"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="개폐 상태 : "
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/safety_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="열림"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="움직임 감지 : "
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/safety_move"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이상없음"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="진동 감지 : "
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/safety_vibrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이상없음"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/safety_open"
+                    android:text="닫기"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/button_rounded"
+                    android:textSize="25dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
     <!--지문 이미지-->
     <ImageView
         android:id="@+id/iv_fingerprint"

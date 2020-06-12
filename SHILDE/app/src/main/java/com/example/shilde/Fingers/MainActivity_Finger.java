@@ -20,6 +20,7 @@ import android.os.Vibrator;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -99,10 +100,6 @@ public class MainActivity_Finger extends AppCompatActivity {
                     //핸들러실행
                     FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
                     fingerprintHandler.startAutho(fingerprintManager, cryptoObject);
-                    Intent intent = new Intent(getApplicationContext(), multi_modal.class);
-                    intent.putExtra("State", tv_message.getText().toString());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
                 }
             }
         }

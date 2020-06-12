@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shilde.Activities.RecognitionActivity;
+import com.example.shilde.Activities.TestActivity;
+import com.example.shilde.Fingers.MainActivity_Finger;
 
 public class MySafety extends AppCompatActivity {
     TextView btn_text;
@@ -24,20 +26,14 @@ public class MySafety extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if(btn_text.getText().equals("열기")){
-                    Intent intent = getIntent();
-                    String state = intent.getStringExtra("State");
-                    if(state.compareTo("Processing...") == 0){
-
-                        btn_text.setText("닫기");
-                        text.setText("닫기");
-
-                        Toast.makeText(getApplicationContext(),"SA-1004가 열렸습니다.",Toast.LENGTH_SHORT).show();
-                    }
                     startActivity(new Intent(v.getContext(), RecognitionActivity.class));
+
+                    btn_text.setText("닫기");
+                    text.setText("열림");
                 }else if(btn_text.getText().equals("닫기")){
 
                     btn_text.setText("열기");
-                    text.setText("열기");
+                    text.setText("닫힘");
                 }
             }
         });

@@ -141,8 +141,12 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
             faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
             for(int i = 0; i<faces.length; i++){
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], rec.recognize(images.get(i), ""), front_camera);
+                if(rec.recognize(images.get(i), "").equals("rla99tjr")){
+                    startActivity(new Intent(getApplicationContext(), finger_inter.class));
+                }
+                //Log.e(this.getClass().getName(), rec.recognize(images.get(i), "")+"와우");
             }
-            startActivity(new Intent(getApplicationContext(), finger_inter.class));
+            //startActivity(new Intent(getApplicationContext(), finger_inter.class));
             return imgRgba;
         }
     }

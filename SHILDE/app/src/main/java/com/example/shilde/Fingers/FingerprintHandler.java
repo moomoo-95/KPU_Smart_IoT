@@ -58,7 +58,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
-        this.update("Processing...", true);
+        this.update("인증성공", true);
     }
 
     public void stopFingerAuth() {
@@ -71,6 +71,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         final TextView tv_message = (TextView) ((Activity) context).findViewById(R.id.tv_message);
         final ImageView iv_fingerprint = (ImageView) ((Activity) context).findViewById(R.id.iv_fingerprint);
         final LinearLayout linearLayout = (LinearLayout) ((Activity) context).findViewById(R.id.ll_secure);
+        final LinearLayout resultLayout = (LinearLayout) ((Activity) context).findViewById(R.id.resultView);
 
         //안내 메세지 출력
         tv_message.setText(s);
@@ -90,13 +91,14 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         } else {//지문인증 성공
             tv_message.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
            iv_fingerprint.setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.SRC_IN);
-            linearLayout.setVisibility(LinearLayout.VISIBLE);
-
+            //linearLayout.setVisibility(LinearLayout.VISIBLE);
+            resultLayout.setVisibility(LinearLayout.VISIBLE);
             //sound effect
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone((Activity) context, notification);
-            Intent intent = new Intent((Activity) context, MySafety.class);
-            intent.putExtra("Name", "open");
+//            Intent intent = new Intent((Activity) context, MySafety.class);
+//            intent.putExtra("Name", "open");
+//            ((Activity) context).setIntent(intent);
         }
     }
 

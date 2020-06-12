@@ -105,7 +105,7 @@
                 android:id="@+id/safety_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="열림"
+                android:text="닫힘"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
                 android:layout_marginLeft="5dp"
