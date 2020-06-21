@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.shilde.Activities.AddPersonPreviewActivity;
+import com.example.shilde.biometriclib.FingerInterface;
 import com.example.shilde.facerecognitionlibrary.Helpers.FileHelper;
 
 import java.io.File;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         find_pw_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), FindPasswordActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FingerInterface.class);
                 startActivity(intent);
             }
         });

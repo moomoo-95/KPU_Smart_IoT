@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 
 import com.example.shilde.Fingers.finger_inter;
 import com.example.shilde.R;
+import com.example.shilde.biometriclib.FingerInterface;
 import com.example.shilde.facerecognitionlibrary.Helpers.CustomCameraView;
 import com.example.shilde.facerecognitionlibrary.Helpers.FileHelper;
 import com.example.shilde.facerecognitionlibrary.Helpers.MatOperation;
@@ -142,7 +143,12 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
             for(int i = 0; i<faces.length; i++){
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], rec.recognize(images.get(i), ""), front_camera);
                 if(rec.recognize(images.get(i), "").equals("rla99tjr")){
-                    startActivity(new Intent(getApplicationContext(), finger_inter.class));
+                    try{
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(new Intent(getApplicationContext(), FingerInterface.class));
                 }
                 //Log.e(this.getClass().getName(), rec.recognize(images.get(i), "")+"와우");
             }
