@@ -17,6 +17,9 @@ http://mechasolution.com/shop/goods/goods_view.php?goodsno=7&category=
 점퍼케이블 4핀 M-F* n개(?) - 440원(개당)
 http://mechasolution.com/shop/goods/goods_view.php?goodsno=541372&rid=cd890590-29f8-431f-acd1-5880910d4647
 
+점퍼케이블 4핀 M-F* n개(30cm) - 1100원(개당)
+http://mechasolution.com/shop/goods/goods_view.php?&goodsno=586438
+
 ******* M-M으로 사야할거 같아 브레드보드에 꽂으려면********
 점퍼케이블 40핀 M-M - 990원 
 http://mechasolution.com/shop/goods/goods_view.php?goodsno=9681&category=
@@ -26,6 +29,9 @@ http://mechasolution.com/shop/goods/goods_view.php?goodsno=948&category
 
 USB 케이블 990원
 http://mechasolution.com/shop/goods/goods_view.php?goodsno=544265&category
+
+아두이노 & 브레드보드 홀더 (아두이노 케이스) 4400원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=1521&category=
 
 
 ***** 서브모터는 둘중 하나 선택하면 될거 같아*****
