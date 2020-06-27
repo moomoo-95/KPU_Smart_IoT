@@ -27,8 +27,11 @@ http://mechasolution.com/shop/goods/goods_view.php?goodsno=9681&category=
 1k 옴 저항 550원
 http://mechasolution.com/shop/goods/goods_view.php?goodsno=948&category
 
+USB 케이블 990원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=544265&category
 
-
+아두이노 & 브레드보드 홀더 (아두이노 케이스) 4400원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=1521&category=
 
 ***** 서브모터는 둘중 하나 선택하면 될거 같아*****
 서브 모터(360도) - 4620원
