@@ -1,5 +1,5 @@
 // 적외선 센서 핀번호 선언
-int motion = 2; 
+int motion = 10; 
 // 13번 고정 LED 핀번호 선언
 
 
@@ -8,13 +8,13 @@ void setup() {
     pinMode(motion,INPUT); 
   
   // 시리얼 통신 속도 설정
-    Serial.begin(9600);
+    Serial.begin(115200);
 }
 
 void loop() {
 
   
-  delay(500);
+ 
   
   // 적외선 인체감지 센서에서 값을 읽는다
   // 막으면 1 , 없으면 0
