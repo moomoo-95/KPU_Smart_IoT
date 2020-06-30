@@ -1,7 +1,7 @@
 //--- 진동센서 SW-420 Test ---//
  
 int ledPin =13;
-int vib =4;
+int vib =11;
  
 void setup(){
   pinMode(ledPin, OUTPUT);
