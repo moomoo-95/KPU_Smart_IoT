@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="80dp"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryText" />
+
+    <EditText
+        android:id="@+id/input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+
+    <EditText
+        android:id="@+id/input_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_id"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_email"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="30"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+    <EditText
+        android:id="@+id/input_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_password"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:inputType="textPassword"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+    <EditText
+        android:id="@+id/input_check_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_passwordC"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:inputType="textPassword"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+
+    <EditText
+        android:id="@+id/input_birthDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="생년월일 Ex) 19960704"
+        android:textSize="25dp"
+        android:layout_margin="5dp"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:maxLength="8"
+        android:inputType="number"
+        android:height="50dp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/rounded_rectangle"
+        android:textColorHint="@color/colorPrimaryText"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <CheckBox
+            android:id="@+id/check_resp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/checkbox_shape"
+            />
+
+        <TextView
+            android:id="@+id/input_resp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="이용약관에 동의합니다."
+            android:textSize="25dp"
+            android:textColorHint="@color/colorPrimaryText"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/join_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="회원가입 완료"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+</LinearLayout>

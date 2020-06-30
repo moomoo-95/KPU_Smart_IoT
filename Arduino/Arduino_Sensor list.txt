@@ -1,0 +1,55 @@
+전원어댑터 - 4620원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=540653&rid=f5338b64-c70e-4228-a6eb-195c94f7ddd9
+
+아두이노 UNO wifi Rev2(우노랑 와이파이 모듈 결합형) - 59400원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=582287&category=
+
+와이파이 모듈 WiFi ESP8266
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=5642
+
+와이파이 모듈 WiFi ESP8266 어댑터
+http://mechasolution.com/shop/goods/goods_view.php?&goodsno=575260
+
+브레드보드 400핀 - 990원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=7&category=
+
+***** 점퍼케이블 몇개 살지 미정 ********
+점퍼케이블 4핀 M-F* n개(?) - 440원(개당)
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=541372&rid=cd890590-29f8-431f-acd1-5880910d4647
+
+점퍼케이블 4핀 M-F* n개(30cm) - 1100원(개당)
+http://mechasolution.com/shop/goods/goods_view.php?&goodsno=586438
+
+******* M-M으로 사야할거 같아 브레드보드에 꽂으려면********
+점퍼케이블 40핀 M-M - 990원 
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=9681&category=
+
+1k 옴 저항 550원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=948&category
+
+USB 케이블 990원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=544265&category
+
+아두이노 & 브레드보드 홀더 (아두이노 케이스) 4400원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=1521&category=
+
+***** 서브모터는 둘중 하나 선택하면 될거 같아*****
+서브 모터(360도) - 4620원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=9154&category=
+
+서브 모터(180도) - 2990원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=584748&category=
+
+*******************************************************
+
+pir 센서(적외선 센서) - 3300원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=575876&category=
+
+진동 센서 - 650원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=576900&category=
+
+자이로센서 - 2090원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=6&category=
+
+20x4 LCD 모듈 with 어댑터 - 5940원
+http://mechasolution.com/shop/goods/goods_view.php?goodsno=541517&category=
