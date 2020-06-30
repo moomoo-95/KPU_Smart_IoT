@@ -40,21 +40,30 @@ import org.opencv.imgproc.Imgproc;
 import java.io.File;
 import java.util.List;
 
+import com.dinuscxj.progressbar.CircleProgressBar;
+
 public class TrainingActivity extends Activity {
     private static final String TAG = "Training";
     TextView progress;
     Thread thread;
-
+    private String Session_ID;
     static {
         if (!OpenCVLoader.initDebug()) {
             // Handle initialization error
         }
     }
 
+    CircleProgressBar circleProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
+
+        circleProgressBar=findViewById(R.id.cpb_circlebar);
+
+        Intent intent = getIntent();
+        Session_ID = intent.getStringExtra("ID");
         progress = (TextView) findViewById(R.id.progressText);
         progress.setMovementMethod(new ScrollingMovementMethod());
     }
@@ -77,6 +86,7 @@ public class TrainingActivity extends Activity {
                     final File[] persons = fileHelper.getTrainingList();
                     if (persons.length > 0) {
                         Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.TRAINING, algorithm);
+                        int prg = 0;
                         for (File person : persons) {
                             if (person.isDirectory()){
                                 File[] files = person.listFiles();
@@ -112,19 +122,23 @@ public class TrainingActivity extends Activity {
                                         // Update screen to show the progress
                                         final int counterPost = counter;
                                         final int filesLength = files.length;
-                                        progress.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                progress.append("Image " + counterPost + " of " + filesLength + " from " + name + " imported.\n");
-                                            }
-                                        });
-
+//                                        progress.post(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                progress.append("Image " + counterPost + " of " + filesLength + " from " + name + " imported.\n");
+//                                            }
+//                                        });
+                                        circleProgressBar.setProgress(prg*3);
                                         counter++;
+                                        prg++;
                                     }
                                 }
                             }
                         }
+//                        progress.setText("얼굴 등록 완료");
+                        circleProgressBar.setProgress(100);
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("ID",Session_ID);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         if (rec.train()) {
                             intent.putExtra("training", "Training successful");

@@ -4,7 +4,13 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-
+    <TextView
+        android:id="@+id/servo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="servo :"
+        android:textSize="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,9 +23,10 @@
             android:layout_margin="20dp"
             />
         <TextView
+            android:id="@+id/Session_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rla99tjr 님"
+            android:text="님"
             android:textStyle="bold"
             android:gravity="right"
             android:layout_margin="20dp"
@@ -40,10 +47,10 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/user_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/user_id"
-                android:text="rla99tjr 님 금고현황"
+                android:text="님 금고현황"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_margin="20dp"
@@ -67,20 +74,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/safe_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="left"
-                    android:text="SA-1004"
+                    android:text="금고명"
                     android:textSize="30sp"
                     android:textColor="@color/colorPrimaryText"
                     />
                 <TextView
+                    android:id="@+id/safe_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="left"
-                    android:text="등록일 : 2019.08.04"
+                    android:text="등록일 :"
                     android:textSize="20sp"
                     android:textColor="@color/colorPrimaryText"
                     />

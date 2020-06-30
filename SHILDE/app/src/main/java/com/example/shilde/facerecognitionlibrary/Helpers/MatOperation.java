@@ -24,7 +24,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 public class MatOperation {
-    private static final Scalar FACE_RECT_COLOR = new Scalar(0, 255, 0, 255);
+    private static final Scalar FACE_RECT_COLOR = new Scalar(0, 0, 255, 255);
     private static final int FONT_SIZE = 5;
     private static final int THICKNESS = 3;
 

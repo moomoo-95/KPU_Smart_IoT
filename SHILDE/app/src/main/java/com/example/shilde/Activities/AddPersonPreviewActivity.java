@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.SurfaceView;
 import android.view.View;
@@ -110,6 +111,7 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+
         Mat imgRgba = inputFrame.rgba();
         Mat imgCopy = new Mat();
         imgRgba.copyTo(imgCopy);
@@ -117,7 +119,6 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         if(front_camera){
             Core.flip(imgRgba,imgRgba,1);
         }
-
         long time = new Date().getTime();
         if((method == MANUALLY) || (method == TIME) && (lastTime + timerDiff < time)){
             lastTime = time;
@@ -145,7 +146,11 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
 
                             // Stop after numberOfPictures (settings option)
                             if(total >= numberOfPictures){
+                                // 기존 유저 생체 이미지 초기화
+                                setDirEmpty(fh.TRAINING_PATH);
+
                                 Intent intent = new Intent(getApplicationContext(), TrainingActivity.class);
+                                intent.putExtra("ID",name);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
@@ -161,6 +166,23 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         }
 
         return imgRgba;
+    }
+    public void setDirEmpty(String dirName){
+        String path = dirName;
+        File dir = new File(path);
+        File[] childFileList = dir.listFiles();
+        if (dir.exists()) {
+            for (File childFile : childFileList) {
+                if(!childFile.getName().contains("person") && !childFile.getName().contains(name)) {
+                    if (childFile.isDirectory()) {
+                        setDirEmpty(childFile.getAbsolutePath()); //하위 디렉토리
+                    } else {
+                        childFile.delete(); //하위 파일
+                    }
+                }
+            }
+            dir.delete();
+        }
     }
 
     @Override

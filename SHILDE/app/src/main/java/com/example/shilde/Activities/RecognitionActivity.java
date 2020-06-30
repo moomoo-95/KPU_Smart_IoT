@@ -56,6 +56,8 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     private boolean night_portrait;
     private int exposure_compensation;
 
+    private String Session_ID;
+
     static {
         if (!OpenCVLoader.initDebug()) {
             // Handle initialization error
@@ -66,6 +68,10 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG,"called onCreate");
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Session_ID = intent.getStringExtra("ID"); // Intent를 통해서 전달받은 로그인 아이디 값
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_recognition);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
@@ -138,16 +144,18 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
             // skip
             return imgRgba;
         } else {
+            try{
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
             for(int i = 0; i<faces.length; i++){
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], rec.recognize(images.get(i), ""), front_camera);
-                if(rec.recognize(images.get(i), "").equals("rla99tjr")){
-                    try{
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivity(new Intent(getApplicationContext(), FingerInterface.class));
+                if(rec.recognize(images.get(i), "").equals(Session_ID)){
+                    Intent intent = new Intent(getApplicationContext(), FingerInterface.class);
+                    intent.putExtra("ID",Session_ID);
+                    startActivity(intent);
                 }
                 //Log.e(this.getClass().getName(), rec.recognize(images.get(i), "")+"와우");
             }

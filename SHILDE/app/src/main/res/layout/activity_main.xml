@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,19 +15,19 @@
             android:id="@+id/menu_ico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn"
             android:layout_margin="20dp"
-            />
+            android:src="@drawable/btn" />
+
         <TextView
+            android:id="@+id/Session_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rla99tjr 님"
-            android:textStyle="bold"
-            android:gravity="right"
             android:layout_margin="20dp"
+            android:gravity="right"
+            android:text="님"
             android:textColor="@color/colorPrimaryText"
             android:textSize="26sp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,150 +36,88 @@
         android:layout_margin="20dp"
         android:background="@drawable/rounded_rectangle"
         android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/safety"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/safety_image_1"
-                android:layout_margin="20dp"
                 android:layout_width="100dp"
                 android:layout_height="90dp"
-                android:src="@drawable/sample_safe1"
-                />
+                android:layout_margin="20dp"
+                android:src="@drawable/sample_safe1" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/safe_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:layout_gravity="left"
-                    android:text="SA-1004"
-                    android:textSize="30sp"
+                    android:layout_margin="10dp"
+                    android:text="금고명"
                     android:textColor="@color/colorPrimaryText"
-                    />
+                    android:textSize="30sp" />
+
                 <TextView
+                    android:id="@+id/safe_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:layout_gravity="left"
-                    android:text="등록일 : 2019.08.04"
-                    android:textSize="20sp"
+                    android:layout_margin="10dp"
+                    android:text="등록일 : "
                     android:textColor="@color/colorPrimaryText"
-                    />
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
+
+
+        <TextView
+            android:id="@+id/servo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_margin="20dp"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/sample_safe2"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="KFO-9872"
-                    android:textSize="30sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="등록일 : 2019.10.16"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="servo :"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/vib"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_margin="20dp"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/sample_safe3"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="ALE-2110"
-                    android:textSize="30sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="등록일 : 2020.01.23"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="vib :"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/gyro_x"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_margin="20dp"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/sample_safe4"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="SHM-290"
-                    android:textSize="30sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
-                    android:text="등록일 : 2020.03.18"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimaryText"
-                    />
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gyro x :"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/gyro_y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gyro y :"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/gyro_z"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gyro z :"
+            android:textSize="30dp"/>
+        <TextView
+            android:id="@+id/PIR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="PIR :"
+            android:textSize="30dp"/>
     </LinearLayout>
-
-
-
 </LinearLayout>
