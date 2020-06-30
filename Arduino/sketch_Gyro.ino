@@ -1,4 +1,4 @@
-#include<Wire.h>
+#include <Wire.h>
 const int MPU_addr=0x68;  // I2C address of the MPU-6050
 int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
 void setup(){
@@ -28,5 +28,5 @@ void loop(){
   Serial.print(" | GyX = "); Serial.print(GyX);
   Serial.print(" | GyY = "); Serial.print(GyY);
   Serial.print(" | GyZ = "); Serial.println(GyZ);
-  delay(333);
+  delay(1000);
 }
