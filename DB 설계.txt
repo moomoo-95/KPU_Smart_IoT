@@ -1,0 +1,78 @@
+// 개폐 여부
+create table OPEN_CLOSE_STATUS(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '개폐여부 순번');
+
+// 이상 여부
+create table STATUS_CHANGE(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '이상여부 순번');
+
+// 자이로 센서
+create table GYRO_SENSOR(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '자이로값 상태 순번');
+
+// 적외선 센서
+create table INFRARED_SENSOR(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '적외선센서 상태 순번');
+
+// 전원 상태
+create table POWER_STATUS(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '전원 상태 순번');
+
+// 진동 센서
+create table OSCILLATION_SENSOR(STATUS_SEQ INT UNSIGNED NOT NULL COMMENT '진동센서 상태 순번');
+
+// 기본키 설정방법(AUTO_INCREMENT)
+ALTER TABLE USER_INFO MODIFY COLUMN USER_SEQ INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '회원 순번';
+ALTER table USER_INFO ADD CONSTRAINT PK_USER_INFO PRIMARY KEY (USER_SEQ);
+
+// INNER JOIN
+select STATUS_SEQ from OPEN_CLOSE_STATUS ocs inner join user_info ui on ui.USER_SEQ = ocs.PUBLIC_SEQ ;
+
+// 외래키 설정
+ALTER TABLE OSCILLATION_SENSOR ADD CONSTRAINT FK_user_info_TO_OSCILLATION_SENSOR FOREIGN KEY ( PUBLIC_SEQ ) REFERENCES USER_INFO ( USER_SEQ );
+
+------------------------------------------------------------------ 기능 ------------------------------------------------------------------------------
+/* 모든 정보는 where 1=#{id} */
+
+// 메인페이지 호출( 금고명, 상태, 수정시간 호출) [ USER_SEQ를 ID값으로 변경하여 내가 접속한 ID로만 조회해서 나의 금고만 조회 ]
+SELECT EQU_NAME, case EI.STATUS when 'NM01' then '정상' else '문제발생' end as status, UI.MOD_DT FROM equ_info EI INNER JOIN user_info ui ON UI.USER_SEQ = EI.USER_SEQ ;
+
+// 로그인 시 검증
+
+// 회원가입
+insert 
+	into user_info
+		(
+			USER_NAME,
+			ID,
+			PASSWORD,
+			EMAIL,
+			BIRTH_DAY,
+			MOD_DT,
+		)
+	values
+		(
+			이름변수,
+			아이디 변수,
+			패스워드,
+			이메일 변수,
+			생일 변수,
+			NOW(),
+		)
+
+// ID, PW 찾기
+
+// 금고 등록
+
+// 금고 정보 수정
+
+// 금고 정보 조회
+select 
+	EQU_NAME,
+	case EI.STATUS when 'NM01' then '정상' else '문제발생' end as EQU_STATUS,
+	reg_dt as EQU_REG_DT,
+	ui.USER_NAME,
+	ui.ID,
+	ui.MOD_DT as USR_MOD_DT
+from equ_info ei 
+inner join user_info ui on ui.USER_SEQ = ei.USER_SEQ 
+
+// 내 정보 수정
+
+
+

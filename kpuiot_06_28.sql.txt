@@ -1,0 +1,272 @@
+-- MySQL dump 10.16  Distrib 10.2.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: kpuiot
+-- ------------------------------------------------------
+-- Server version	10.2.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `equ_info`
+--
+
+DROP TABLE IF EXISTS `equ_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `equ_info` (
+  `EQU_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '장비 순번',
+  `USER_SEQ` int(10) unsigned NOT NULL COMMENT '사용자 순번',
+  `EQU_NAME` varchar(50) NOT NULL,
+  `STATUS` char(4) NOT NULL,
+  `REG_DT` datetime NOT NULL,
+  PRIMARY KEY (`EQU_SEQ`),
+  KEY `FK_user_info_TO_EQU_INFO` (`USER_SEQ`),
+  CONSTRAINT `FK_user_info_TO_EQU_INFO` FOREIGN KEY (`USER_SEQ`) REFERENCES `user_info` (`USER_SEQ`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='금고';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equ_info`
+--
+
+LOCK TABLES `equ_info` WRITE;
+/*!40000 ALTER TABLE `equ_info` DISABLE KEYS */;
+INSERT INTO `equ_info` VALUES (1,3,'','','0000-00-00 00:00:00'),(2,1,'KPU-0001','NM01','2020-06-28 02:20:02'),(3,3,'KPU-0005','NM01','2020-06-28 02:20:16'),(4,2,'KPU-1205','NM01','2020-06-28 02:20:26'),(5,3,'KPU-9912','NM01','2020-06-28 02:20:41'),(6,1,'KPU-0012','NM01','2020-06-28 02:20:47'),(7,4,'KPU-3515','NM01','2020-06-28 02:20:55'),(8,2,'KPU-3516','NM02','2020-06-28 02:21:10'),(11,4,'KPU-3321','NM01','2020-06-28 02:21:49'),(14,4,'KPU-3321','NM01','2020-06-28 02:25:42');
+/*!40000 ALTER TABLE `equ_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gyro_sensor`
+--
+
+DROP TABLE IF EXISTS `gyro_sensor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gyro_sensor` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '자이로값 상태 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `X_INDEX_VALUE` int(11) NOT NULL,
+  `Y_INDEX_VALUE` int(11) NOT NULL,
+  `Z_INDEX_VALUE` int(11) NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `MOD_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_GYRO_SENSOR` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_GYRO_SENSOR` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_GYRO_SENSOR` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='자이로 센서';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gyro_sensor`
+--
+
+LOCK TABLES `gyro_sensor` WRITE;
+/*!40000 ALTER TABLE `gyro_sensor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gyro_sensor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `infrared_sensor`
+--
+
+DROP TABLE IF EXISTS `infrared_sensor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `infrared_sensor` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '적외선센서 상태 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `VALUE` int(11) NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `MOD_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_INFRARED_SENSOR` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_INFRARED_SENSOR` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_INFRARED_SENSOR` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='적외선 센서';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `infrared_sensor`
+--
+
+LOCK TABLES `infrared_sensor` WRITE;
+/*!40000 ALTER TABLE `infrared_sensor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `infrared_sensor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `open_close_status`
+--
+
+DROP TABLE IF EXISTS `open_close_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `open_close_status` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '개폐여부 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `VALUE` int(11) NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `OPEN_TIME` datetime NOT NULL,
+  `CLOSE_TIME` datetime NOT NULL,
+  `MOT_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_OPEN_CLOSE_STATUS` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_OPEN_CLOSE_STATUS` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_OPEN_CLOSE_STATUS` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='개폐 여부';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `open_close_status`
+--
+
+LOCK TABLES `open_close_status` WRITE;
+/*!40000 ALTER TABLE `open_close_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `open_close_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `oscillation_sensor`
+--
+
+DROP TABLE IF EXISTS `oscillation_sensor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oscillation_sensor` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '진동센서 상태 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `VALUE` int(11) NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `MOD_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_OSCILLATION_SENSOR` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_OSCILLATION_SENSOR` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_OSCILLATION_SENSOR` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='진동 센서';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oscillation_sensor`
+--
+
+LOCK TABLES `oscillation_sensor` WRITE;
+/*!40000 ALTER TABLE `oscillation_sensor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oscillation_sensor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `power_status`
+--
+
+DROP TABLE IF EXISTS `power_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `power_status` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '전원 상태 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `VALUE` int(11) NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `MOD_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_POWER_STATUS` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_POWER_STATUS` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_POWER_STATUS` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='전원 상태';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `power_status`
+--
+
+LOCK TABLES `power_status` WRITE;
+/*!40000 ALTER TABLE `power_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `power_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status_change`
+--
+
+DROP TABLE IF EXISTS `status_change`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status_change` (
+  `STATUS_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '이상여부 순번',
+  `EQU_SEQ` int(11) unsigned NOT NULL COMMENT '금고 순번',
+  `PUBLIC_SEQ` int(10) unsigned NOT NULL,
+  `GYRO_STATUS` int(10) unsigned NOT NULL,
+  `INFRARED_STATUS` int(10) unsigned NOT NULL,
+  `OSCILLATION_STATUS` int(10) unsigned NOT NULL,
+  `STATUS` int(10) unsigned NOT NULL,
+  `MOT_TIME` datetime NOT NULL,
+  PRIMARY KEY (`STATUS_SEQ`),
+  KEY `FK_user_info_TO_STATUS_CHANGE` (`PUBLIC_SEQ`),
+  KEY `FK_EQU_INFO_TO_STATUS_CHANGE` (`EQU_SEQ`),
+  CONSTRAINT `FK_EQU_INFO_TO_STATUS_CHANGE` FOREIGN KEY (`EQU_SEQ`) REFERENCES `equ_info` (`EQU_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='이상 여부';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status_change`
+--
+
+LOCK TABLES `status_change` WRITE;
+/*!40000 ALTER TABLE `status_change` DISABLE KEYS */;
+/*!40000 ALTER TABLE `status_change` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_info`
+--
+
+DROP TABLE IF EXISTS `user_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_info` (
+  `USER_SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '회원 순번',
+  `EQU_SEQ` int(11) unsigned DEFAULT NULL COMMENT '금고 순번',
+  `USER_NAME` varchar(100) NOT NULL COMMENT '사용자 이름',
+  `ID` varchar(50) NOT NULL COMMENT '사용자 ID',
+  `PASSWORD` varchar(100) NOT NULL COMMENT '사용자 비밀번호',
+  `EMAIL` varchar(320) NOT NULL COMMENT '이메일',
+  `BIRTH_DAY` varchar(20) NOT NULL COMMENT '생일',
+  `MOD_DT` datetime NOT NULL,
+  PRIMARY KEY (`USER_SEQ`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='사용자 정보';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_info`
+--
+
+LOCK TABLES `user_info` WRITE;
+/*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
+INSERT INTO `user_info` VALUES (1,1,'','','','','','2020-06-21 03:04:03'),(2,2,'홍길동','honggilldoong','123456','hong@kpu.ac.kr','1996-03-05','2020-06-21 03:46:12'),(3,2,'이순신','lee','12345678','lee@kpu.ac.kr','1996-09-24','2020-06-21 03:46:42'),(4,NULL,'TEST','lee55','123456','lee@kouy.ac.kr','1932-02-10','2020-06-28 01:05:55');
+/*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-06-28  2:29:02
