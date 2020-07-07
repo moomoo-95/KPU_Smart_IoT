@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0068C8"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rla99tjr 님"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50px"
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="520dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_rectangle"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="환경설정"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="50px"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/safety_name"
+                android:text="금고명 : NFK-1039-EL"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="50px"
+
+                android:textColor="#c9c9c9"
+                android:textSize="26sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/vibrate"
+                android:text="진동 ON / 진동 OFF"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:textColor="#ffffff"
+                android:layout_marginTop="50px"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/button_rounded"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sound"
+                android:text="소리 ON / 소리 OFF"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:textColor="#ffffff"
+                android:layout_marginTop="50px"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/button_rounded"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/app_version"
+                android:text="Application Version"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:textColor="#ffffff"
+                android:layout_marginTop="50px"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/button_rounded"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_center"
+                android:text="고객센터"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:textColor="#ffffff"
+                android:layout_marginTop="50px"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/button_rounded"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.LinearLayoutCompat>

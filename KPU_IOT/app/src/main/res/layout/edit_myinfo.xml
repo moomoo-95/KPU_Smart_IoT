@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0068C8"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="홍길동 님"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="50px"
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#1780e3"
+        android:layout_marginTop="30dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_id"
+                android:text="홍길동 님"
+                android:textStyle="bold"
+                android:layout_marginTop="20px"
+                android:paddingLeft="120dp"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="40sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="90dp"
+                android:gravity="center"
+                android:id="@+id/logout"
+                android:text="로그아웃"
+                android:layout_marginLeft="145dp"
+                android:textStyle="bold"
+                android:typeface="sans"
+                android:textColor="#ffffff"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/button_rounded"
+                android:textSize="22dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이름 : "
+                android:paddingLeft="50px"
+                android:textSize="25dp"
+                android:layout_marginTop="50dp"
+                android:height="80dp"
+                android:background="@drawable/rounded_rectangle"
+                android:maxLength="10"
+                android:textColorHint="#ffffff"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이메일 : "
+                android:paddingLeft="50px"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:height="80dp"
+                android:background="@drawable/rounded_rectangle"
+                android:maxLength="10"
+                android:textColorHint="#ffffff"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/join_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="가입시간 : "
+                android:paddingLeft="50px"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:height="80dp"
+                android:background="@drawable/rounded_rectangle"
+                android:maxLength="10"
+                android:textColorHint="#ffffff"/>
+
+        </LinearLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>
