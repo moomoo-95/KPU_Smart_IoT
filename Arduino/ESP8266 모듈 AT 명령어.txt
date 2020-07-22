@@ -1,6 +1,6 @@
 WiFi 모드 설정: AT+CWMODE=1 
 
-공유기에 접속: AT+CWJAP="AndroidHotspot5044","0325274715"
+공유기에 접속: AT+CWJAP="NAME","PW"
 
 할당받은 IP 확인: AT+CIFSR
 
