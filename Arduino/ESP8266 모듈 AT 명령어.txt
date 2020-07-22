@@ -1,0 +1,17 @@
+WiFi 모드 설정: AT+CWMODE=1 
+
+공유기에 접속: AT+CWJAP="AndroidHotspot5044","0325274715"
+
+할당받은 IP 확인: AT+CIFSR
+
+MUX=0 설정: AT+CIPMUX=0
+
+서버 연결: AT+CIPSTART="TCP","101.101.219.143",8080
+
+Transparent Transmission(이하 TT) 기능을 활성화: AT+CIPMODE=1
+
+전송 프롬프트 오픈: AT+CIPSEND (전송 내용)
+
+TT모드 종료: AT+CIPMODE=0
+
+TCP 연결 해제: AT+CIPCLOSE
