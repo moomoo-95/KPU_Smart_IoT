@@ -21,7 +21,7 @@ public class FingerInterface extends AppCompatActivity {
     private BiometricPromptManager mManager;
 
 
-    private String Session_ID;
+    private String Session_ID, safe_n, safe_d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,9 @@ public class FingerInterface extends AppCompatActivity {
 
         Intent intent = getIntent();
         Session_ID = intent.getStringExtra("ID"); // Intent를 통해서 전달받은 로그인 아이디 값
+        safe_n = intent.getStringExtra("safe_name");
+        safe_d = intent.getStringExtra("safe_date");
+
 
         mManager = BiometricPromptManager.from(this);
         StringBuilder stringBuilder = new StringBuilder();
@@ -61,6 +64,8 @@ public class FingerInterface extends AppCompatActivity {
                             Toast.makeText(FingerInterface.this, "onSucceeded", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), multi_modal.class);
                             intent.putExtra("ID",Session_ID);
+                            intent.putExtra("safe_name",safe_n);
+                            intent.putExtra("safe_date",safe_d);
                             startActivity(intent);
                         }
 

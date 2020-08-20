@@ -13,27 +13,29 @@ import android.widget.Toast;
 import com.example.shilde.Activities.RecognitionActivity;
 import com.example.shilde.Activities.TestActivity;
 
-import app.akexorcist.bluetotohspp.library.BluetoothSPP;
-import app.akexorcist.bluetotohspp.library.BluetoothState;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MySafety extends AppCompatActivity {
 
     //세션 유지 ID
-    private String Session_ID;
+    private String Session_ID, safe_n, safe_d;
     private TextView now_userID;
     private TextView user_id;
     private TextView safe_name;
     private TextView safe_date;
+
+    ImageView menu_Image;
 
     private TextView safety_status; //개폐여부
     private TextView safety_move;   //자이로
     private TextView safety_vibrate;//충격
 
     private TextView safety_open;//개폐버튼
+
+    private int x_before = 0, y_before = 0, z_before = 0;
     //boolean door_state = false;
 
-    // 블루투스
-    private BluetoothSPP bt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,28 +48,27 @@ public class MySafety extends AppCompatActivity {
         safe_date = (TextView) findViewById(R.id.safe_date);
 
 
+        menu_Image = (ImageView) findViewById(R.id.menu_ico);
         safety_open = (TextView)findViewById(R.id.safety_open);
         safety_status = (TextView)findViewById(R.id.safety_status);
+        safety_move = (TextView)findViewById(R.id.safety_move);
+        safety_vibrate = (TextView)findViewById(R.id.safety_vibrate);
+
+        safety_open.setOnClickListener(btnListener);
+        menu_Image.setOnClickListener(btnListener);
 
         Intent intent = getIntent();
         Session_ID = intent.getStringExtra("ID"); // Intent를 통해서 전달받은 로그인 아이디 값
-        safe_name.setText(intent.getStringExtra("safe_name"));
-        safe_date.setText(intent.getStringExtra("safe_date"));
+        safe_n = intent.getStringExtra("safe_name");
+        safe_d = intent.getStringExtra("safe_date");
+        safe_name.setText(safe_n);
+        safe_date.setText("등록일 : "+safe_d);
 
 
         //door_state = intent.getBooleanExtra("door_state", false);
         now_userID.setText(Session_ID+"님");
         user_id.setText(Session_ID+"님 금고현황");
-
-
-        //블루투스 시작
-        bt = new BluetoothSPP(this); //Initializing
-        if (!bt.isBluetoothAvailable()) { //블루투스 사용 불가
-            Toast.makeText(getApplicationContext()
-                    , "Bluetooth is not available"
-                    , Toast.LENGTH_SHORT).show();
-            finish();
-        }
+        
 
         // 아두이노에서 넘어오는 데이터를 수신하는 부분 1바이트씩 준다. 이걸 모아서 메세지로 리턴
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
@@ -86,6 +87,31 @@ public class MySafety extends AppCompatActivity {
                         safety_open.setText("닫기");
                         safety_status.setText("열림");
                     }
+                    if(Integer.parseInt(sensor_data[1]) > 10000){
+                        safety_vibrate.setText("강한 충격");
+                    }
+                    else if(Integer.parseInt(sensor_data[1]) > 5000){
+                        safety_vibrate.setText("약한 충격");
+                    }
+                    else {
+                        safety_vibrate.setText("이상 없음");
+
+                    }
+                    if((Integer.parseInt(sensor_data[2]) - x_before) > 3000 || (Integer.parseInt(sensor_data[2]) - x_before) < -3000){
+                        safety_move.setText("움직임 발생");
+                    }
+                    else if((Integer.parseInt(sensor_data[3]) - y_before) > 3000 || (Integer.parseInt(sensor_data[3]) - y_before) < -3000){
+                        safety_move.setText("움직임 발생");
+                    }
+                    else if((Integer.parseInt(sensor_data[4]) - z_before) > 3000 || (Integer.parseInt(sensor_data[4]) - z_before) < -3000){
+                        safety_move.setText("움직임 발생");
+                    }
+                    else{
+                        safety_move.setText("이상 없음");
+                    }
+                    x_before = Integer.parseInt(sensor_data[2]);
+                    y_before = Integer.parseInt(sensor_data[3]);
+                    z_before = Integer.parseInt(sensor_data[4]);
                 }
             }
         });
@@ -107,27 +133,6 @@ public class MySafety extends AppCompatActivity {
             }
         });
 
-        ImageView menu_Image = (ImageView) findViewById(R.id.menu_ico);
-        menu_Image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), MyPage.class);
-                startActivity(intent);
-            }
-        });
-        safety_open.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                if(safety_status.getText().equals("열림")){
-                    bt.send("1", true);
-                }else{
-                    bt.disconnect();
-                    Intent intent = new Intent(getApplicationContext(), RecognitionActivity.class);
-                    intent.putExtra("ID",Session_ID);
-                    startActivity(intent);
-                }
-            }
-        });
     }
     public void onDestroy() {
         super.onDestroy();
@@ -147,9 +152,49 @@ public class MySafety extends AppCompatActivity {
                 setup();
             }
         }
-        bt.connect("00:19:10:09:42:FE");
+        if (bt.getServiceState() != BluetoothState.STATE_CONNECTED) {
+            bt.connect("00:19:10:09:42:FE");
+        }
     }
     // 블류슈트 서비스 시작 후 실행되는 것, 전송시 Text가 아두이노에게 전송됨
     public void setup() {
     }
+
+    View.OnClickListener btnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(v.getId() == R.id.safety_open){
+//                bt.disconnect();
+                if(safety_status.getText().equals("열림")){
+                    bt.send("1", true);
+                }else{
+                    final TimerTask tt = new TimerTask() {
+                        @Override
+                        public void run() {
+                            bt.disconnect();
+                            if(bt.getServiceState() != BluetoothState.STATE_CONNECTED){
+                                cancel();
+                                Intent intent = new Intent(getApplicationContext(), RecognitionActivity.class);
+                                intent.putExtra("ID",Session_ID);
+                                intent.putExtra("safe_name",safe_n);
+                                intent.putExtra("safe_date",safe_d);
+                                startActivity(intent);
+                            }
+                        }
+                    };
+                    Timer timer = new Timer();
+                    timer.schedule(tt, 1000, 500);
+                }
+            }
+            else if(v.getId()== R.id.menu_ico){
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("ID",Session_ID);
+                intent.putExtra("safe_name",safe_n);
+                intent.putExtra("safe_date",safe_d);
+                //intent.putExtra("door_state",false);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        }
+    };
 }
