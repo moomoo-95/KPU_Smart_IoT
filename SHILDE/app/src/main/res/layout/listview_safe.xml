@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/safety"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/safe_image"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/sample_safe1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/safe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:text="금고명"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/safe_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_margin="10dp"
+            android:text="등록일 : "
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

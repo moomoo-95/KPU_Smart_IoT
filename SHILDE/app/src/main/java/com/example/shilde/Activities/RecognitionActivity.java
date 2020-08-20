@@ -56,7 +56,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     private boolean night_portrait;
     private int exposure_compensation;
 
-    private String Session_ID;
+    private String Session_ID, safe_n, safe_d;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -71,6 +71,8 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
 
         Intent intent = getIntent();
         Session_ID = intent.getStringExtra("ID"); // Intent를 통해서 전달받은 로그인 아이디 값
+        safe_n = intent.getStringExtra("safe_name");
+        safe_d = intent.getStringExtra("safe_date");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_recognition);
@@ -155,6 +157,8 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
                 if(rec.recognize(images.get(i), "").equals(Session_ID)){
                     Intent intent = new Intent(getApplicationContext(), FingerInterface.class);
                     intent.putExtra("ID",Session_ID);
+                    intent.putExtra("safe_name",safe_n);
+                    intent.putExtra("safe_date",safe_d);
                     startActivity(intent);
                 }
                 //Log.e(this.getClass().getName(), rec.recognize(images.get(i), "")+"와우");

@@ -17,9 +17,10 @@
             android:layout_margin="20dp"
             />
         <TextView
+            android:id="@+id/session_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rla99tjr 님"
+            android:text="KPUTEST님"
             android:textStyle="bold"
             android:gravity="right"
             android:layout_margin="20dp"
@@ -41,10 +42,10 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/user_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/user_id"
-                android:text="rla99tjr 님"
+                android:text="KPUTEST님"
                 android:textStyle="bold"
                 android:gravity="left"
                 android:layout_margin="20dp"
@@ -52,9 +53,9 @@
                 android:textSize="28sp"
                 />
             <Button
+                android:id="@+id/logout"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:id="@+id/logout"
                 android:text="로그아웃"
                 android:textStyle="bold"
                 android:typeface="sans"
@@ -68,20 +69,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/safety_name"
-                android:text="금고명 : SA-1004"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_margin="20dp"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="26sp"
-                />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -153,6 +142,7 @@
                 android:background="@drawable/button_rounded"
                 android:textSize="25dp"
                 />
+        </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

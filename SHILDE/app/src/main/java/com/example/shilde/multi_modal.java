@@ -22,7 +22,7 @@ public class multi_modal extends AppCompatActivity {
     TextView btn_text;
     TextView text;
 
-    private String Session_ID;
+    private String Session_ID, safe_n, safe_d;
 
     CircleProgressBar circleProgressBar;
 
@@ -36,6 +36,8 @@ public class multi_modal extends AppCompatActivity {
 
         Intent intent = getIntent();
         Session_ID = intent.getStringExtra("ID"); // Intent를 통해서 전달받은 로그인 아이디 값
+        safe_n = intent.getStringExtra("safe_name");
+        safe_d = intent.getStringExtra("safe_date");
 
 
         text = (TextView)findViewById(R.id.progressText);
@@ -56,12 +58,25 @@ public class multi_modal extends AppCompatActivity {
                 String[] sensor_data = new String[6];
                 sensor_data = message.split("/");
                 if(sensor_data.length == 6) {
-                    if(sensor_data[0].equals("0")){
-                        bt.disconnect();
-                        Intent intent2 = new Intent(getApplicationContext(), MySafety.class);
-                        intent2.putExtra("ID",Session_ID);
-                        //intent2.putExtra("door_state",true);
-                        startActivity(intent2);
+                    if(sensor_data[0].equals("0")){ // 0 = 열림, 1 = 닫힘
+                        final TimerTask tt = new TimerTask() {
+                            @Override
+                            public void run() {
+                                bt.disconnect();
+                                if(bt.getServiceState() != BluetoothState.STATE_CONNECTED){
+                                    cancel();
+                                    Intent intent2 = new Intent(getApplicationContext(), MySafety.class);
+                                    intent2.putExtra("ID",Session_ID);
+                                    intent2.putExtra("safe_name",safe_n);
+                                    intent2.putExtra("safe_date",safe_d);
+                                    //intent2.putExtra("door_state",true);
+                                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent2);
+                                }
+                            }
+                        };
+                        Timer timer = new Timer();
+                        timer.schedule(tt, 1000, 500);
                     }
                 }
             }
@@ -123,7 +138,9 @@ public class multi_modal extends AppCompatActivity {
                 setup();
             }
         }
-        bt.connect("00:19:10:09:42:FE");
+        if (bt.getServiceState() != BluetoothState.STATE_CONNECTED) {
+            bt.connect("00:19:10:09:42:FE");
+        }
     }
     // 블류슈트 서비스 시작 후 실행되는 것, 전송시 Text가 아두이노에게 전송됨
     public void setup() {
