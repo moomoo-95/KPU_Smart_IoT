@@ -25,9 +25,21 @@ public class ConnectDB {
     private Connection conn = null;
     private PreparedStatement pstmt = null;
     private PreparedStatement pstmt2 = null;
+    private PreparedStatement pstmt_servo = null;
+    private PreparedStatement pstmt_vid = null;
+    private PreparedStatement pstmt_gyro = null;
+    private PreparedStatement pstmt_pir = null;
     private ResultSet rs = null;
+    private ResultSet rs_servo = null;
+    private ResultSet rs_vid = null;
+    private ResultSet rs_gyro = null;
+    private ResultSet rs_pir = null;
     private String sql = "";
     private String sql2 = "";
+    private String sql_servo = "";
+    private String sql_vid = "";
+    private String sql_gyro = "";
+    private String sql_pir = "";
     String returns = "";
     String returns2 = "";
 
@@ -167,27 +179,30 @@ public class ConnectDB {
     public String getMain(String id) {
         try {
 
-            String str; 
-	    int i = 0;
+            String str=""; 
+	    String str2="";
+            int i = 0;
 	    String flag = "&";
 	    String flag2 = "%Y.%m.%d";
 	    Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
             // 로그인 ID값의 USER_SEQ와 장비의 USER_SEQ가 같은 값의 장비만 조회
             sql = "select equ_name, DATE_FORMAT(reg_dt, ?) as reg_dt from equ_info ei inner join user_info ui on ui.user_seq = ei.user_seq where ui.user_seq = (select user_seq from user_info where id = ?)";
+	    // 서보모터 sql
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, flag2);
    	    pstmt.setString(2, id);
             rs = pstmt.executeQuery();
             // 장비 조회
-            if ( rs.next() ) {
+            while ( rs.next() ) {
 		    returns2 = rs.getString("reg_dt");
-		    str = flag.concat(returns2);
-		    returns = rs.getString("equ_name");
-		    returns = returns.concat(str);
+		    str = str+flag.concat(returns2);
+		    returns2 = rs.getString("equ_name");
+		    str2 = str2+flag.concat(returns2);
             // 조회된 장비가 없어서 미 조회
-            } else {
-
+            } 
+            returns = str+"!"+str2;
+            if(str.compareTo("")==0){
                 returns = "empty";
             }
         } catch (Exception e) {
@@ -231,22 +246,32 @@ public class ConnectDB {
     }
 
     // 마이페이지 사용자 정보 수정
-    public String modUsr(String id, String email, String passwd) {
+    public String modUsr(String id) {
         try {
-            String key = "kpuiot";
+            String fla = "&";
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
-            // 필수값 = 이메일, 패스워드,
-            sql = "UPDATE user_info SET password = HEX(AES_ENCRYPT( ? , key)) , email= ? WHERE id = ? ";
+            // 필수값 = 이메일, 패스워
+            sql = " select id, user_name, email, birth_day, mod_dt from user_info where id = ? ";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, passwd);
-            pstmt.setString(2, email);
-            pstmt.setString(3, id);
+            pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             // 조회값 여부
             if ( rs.next()) {
-
-                returns = "success";
+		String usr_id = rs.getString("id");
+		String usr_name = rs.getString("user_name");
+		String usr_email = rs.getString("email");
+		String usr_birth = rs.getString("birth_day");
+		String usr_mod_dt = rs.getString("mod_dt");
+		String result1 = usr_id.concat(fla);
+		String result2 = result1.concat(usr_name);
+		String result3 = result2.concat(fla);
+		String result4 = result3.concat(usr_email);
+		String result5 = result4.concat(fla);
+		String result6 = result5.concat(usr_birth);
+		String result7 = result6.concat(fla);
+		String result8 = result7.concat(usr_mod_dt);
+                returns = result8;
             } else {
 
                 returns = "fail";

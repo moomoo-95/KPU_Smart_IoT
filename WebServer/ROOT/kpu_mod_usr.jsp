@@ -3,13 +3,11 @@
 <%@ page import="javamysql.ConnectDB"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String id = requset.getParameter("id");
-	String passwd = request.getParameter("passwd");
-	String email = request.getParameter("email");
+	String id = request.getParameter("id");
 	String type = "modUsr";
 	ConnectDB connectDB = ConnectDB.getInstance();
 	if( type.equals("modUsr") ) {
-		String returns = connectDB.modUsr(id, passwd, email);
+		String returns = connectDB.modUsr(id);
 		out.println(returns);
 	};
 %>
