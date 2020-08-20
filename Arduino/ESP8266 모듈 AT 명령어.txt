@@ -1,17 +1,33 @@
-WiFi 모드 설정: AT+CWMODE=1 
+WiFi 모드 설정: AT+CWMODE= 3 
+1 : Station Mode, WiFi 디바이스 기능
+2 : AP Mode, Access Point 기능
+3 : AP +Station Mode, 디바이이스 + AP 기능
 
-공유기에 접속: AT+CWJAP="NAME","PW"
+공유기에 접속: AT+CWJAP="AndroidHotspot5044","0325274715"
 
 할당받은 IP 확인: AT+CIFSR
 
-MUX=0 설정: AT+CIPMUX=0
+MUX=1 설정: AT+CIPMUX=1
+0: Single
+1: Multiple
+
+서버 키기: AT+CIPSERVER=1 
+1: 서버 (포트는 기본 333) (포트 변경시 AT+CIPSERVER=1, xxx )
+
+
 
 서버 연결: AT+CIPSTART="TCP","101.101.219.143",8080
+	 AT+CIPSTART=0,"TCP","101.101.219.143",8080 (이걸로 쓰기*)
 
-Transparent Transmission(이하 TT) 기능을 활성화: AT+CIPMODE=1
 
-전송 프롬프트 오픈: AT+CIPSEND (전송 내용)
+(안씀*)Transparent Transmission(이하 TT) 기능을 활성화: AT+CIPMODE=1
+
+전송 프롬프트 오픈: AT+CIPSEND=0,65 (전송 내용)
 
 TT모드 종료: AT+CIPMODE=0
 
 TCP 연결 해제: AT+CIPCLOSE
+
+
+POST /process.jsp?&temp=10&humi=20 HTTP/1.1 Host: 101.101.219.143\r\n\r\n
+GET /process.jsp?&temp=233&humi=44 HTTP/1.1 Host: 101.101.219.143\r\n\r\n
