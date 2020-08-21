@@ -11,7 +11,7 @@ int state = 1;
 int angle = 0; // 각도
  
 void setup() {
-  myservo.attach(9);   //서보 시그널 핀설정
+  myservo.attach(3);   //서보 시그널 핀설정
   myservo.write(0);     //서보 초기각도 0도 설정
   Serial.begin(9600);
   bluetooth.begin(9600); //블루투스 시리얼 개방
