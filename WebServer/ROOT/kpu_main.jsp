@@ -4,7 +4,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
-	String type = "getMain";
+	String type = request.getParameter("type");
 	ConnectDB connectDB = ConnectDB.getInstance();
 	if( type.equals("getMain") ) {
 		String returns = connectDB.getMain(id);

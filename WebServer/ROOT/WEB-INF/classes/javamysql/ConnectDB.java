@@ -40,6 +40,8 @@ public class ConnectDB {
     private String sql_vid = "";
     private String sql_gyro = "";
     private String sql_pir = "";
+
+    private int rsupdate=0;
     String returns = "";
     String returns2 = "";
 
@@ -215,25 +217,130 @@ public class ConnectDB {
         return returns;
     }
 
-    // 마이페이지 금고 정보 조회
-    public String mySafety(String id) {
+    // 마이금고 정보 조회
+    public String mySafety(String user_id, String safe_name, int number) {
         try {
+            String flag = "&";
 
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
             // 로그인 ID의 금고명, 금고등록시간,
-            sql = "SELECT ei.EQU_NAME, ei.REG_DT, ocs.status, ifs.status, gs.status FROM equ_info ei INNER JOIN user_info ui on ui.user_seq = ei.user_seq INNER JOIN open_close_status ocs on ocs.equ_seq = ui.equ_seq INNER JOIN infrared_sensor ifs on ifs.equ_seq = ocs.equ_seq INNER JOIN gyro_sensor gs on gs.equ_seq = ifs.equ_seq WHERE ui.id = ?";
+            //sql = "SELECT ei.EQU_NAME, ei.REG_DT, ocs.status, ifs.status, gs.status FROM equ_info ei INNER JOIN user_info ui on ui.user_seq = ei.user_seq INNER JOIN open_close_status ocs on ocs.equ_seq = ui.equ_seq INNER JOIN infrared_sensor ifs on ifs.equ_seq = ocs.equ_seq INNER JOIN gyro_sensor gs on gs.equ_seq = ifs.equ_seq WHERE ui.id = ?";
+            sql = "SELECT user_seq, equ_seq FROM equ_info WHERE equ_name = ? and user_seq = (SELECT user_seq FROM user_info WHERE id = ?)";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, safe_name);
+            pstmt.setString(2, user_id);
+            rs = pstmt.executeQuery();
+            int u_id = 0;
+            int s_id = 0;
+            if(rs.next()){
+                u_id = rs.getInt("user_seq");
+                s_id = rs.getInt("equ_seq");
+            }
+            else{ returns = "fail"; }
+            if(u_id == 0){ return returns; }
+            if ( number == 1 ) {
+                sql = "SELECT gyro_status, infrared_status, oscillation_status, oac_status, status, DATE_FORMAT(mot_time, '%Y-%m-%d %T') as mot_time FROM status_change WHERE (public_seq=? and equ_seq=?) and (gyro_status=1 or oscillation_status=1 or oac_status=1) ORDER BY mot_time DESC LIMIT 20";
+            }
+            else if( number == 2) {
+                sql = "SELECT gyro_status, infrared_status, oscillation_status, oac_status, status, DATE_FORMAT(mot_time, '%Y-%m-%d %T') as mot_time FROM status_change WHERE public_seq=? and equ_seq=? ORDER BY mot_time DESC LIMIT 1";
+            }
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, u_id);
+            pstmt.setInt(2, s_id);
             rs = pstmt.executeQuery();
             // 조회값 여부
-            if ( rs.next()) {
-
-                //TODO 값 조회해봐야암
-                returns = rs.getString("PASSWORD");
-            } else {
-
+            String str = "";
+            if(number == 1) {
+                while ( rs.next()) {
+                    str += rs.getString("gyro_status")+flag;
+                    str += rs.getString("infrared_status")+flag;
+                    str += rs.getString("oscillation_status")+flag;
+                    str += rs.getString("oac_status")+flag;
+                    str += rs.getString("status")+flag;
+                    str += rs.getString("mot_time")+"!";
+                }
+            }
+            else if(number == 2) {
+                if (rs.next()) {
+                    str = rs.getString("gyro_status")+flag;
+                    str += rs.getString("infrared_status")+flag;
+                    str += rs.getString("oscillation_status")+flag;
+                    str += rs.getString("oac_status")+flag;
+                    str += rs.getString("status")+flag;
+                    str += rs.getString("mot_time");
+                }
+            }
+            if (str.compareTo("")==0) {
                 returns = "fail";
+            }
+            else { returns = str; }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
+            if (conn != null)try {conn.close();} catch (SQLException ex) {}
+            if (pstmt2 != null)try {pstmt2.close();} catch (SQLException ex) {}
+            if (rs != null)try {rs.close();} catch (SQLException ex) {}
+        }
+        return returns;
+    }
+   
+    // 마이금고 잠그기
+    public String mySafety_close(String user_id, String safe_name, int number) {
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+            sql = "SELECT user_seq, equ_seq FROM equ_info WHERE equ_name = ? and user_seq = (SELECT user_seq FROM user_info WHERE id = ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, safe_name);
+            pstmt.setString(2, user_id);
+            rs = pstmt.executeQuery();
+            int u_id = 0;
+            int s_id = 0;
+            if(rs.next()){
+                u_id = rs.getInt("user_seq");
+                s_id = rs.getInt("equ_seq");
+            }
+            else{ returns = "fail"; }
+            if(u_id == 0){ return returns; }
+            if(number == 1) {
+                sql = "UPDATE equ_info SET status='OS01' WHERE user_seq=? and equ_seq=?";
+            }
+            else if(number == 2) {
+                sql = "UPDATE equ_info SET status='OS02' WHERE user_seq=? and equ_seq=?";
+            }
+            else if(number == 3) {
+                sql = "SELECT oac_status, mot_time FROM status_change WHERE public_seq=? and equ_seq=? ORDER BY mot_time DESC LIMIT 1";
+            }
+            else if(number == 4) {
+                sql = "UPDATE status_change SET status=1 WHERE (public_seq=? and equ_seq=?) and status=0";
+            }
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, u_id);
+            pstmt.setInt(2, s_id);
+            if(number == 3){
+                rs = pstmt.executeQuery();
+                if ( rs.next()) {
+                    if ( rs.getInt("oac_status") == 1 ) {
+                        returns = "success";
+                    }
+                    else {
+                        returns = "fail"; 
+                    }
+                } else {
+                        returns = "fail";
+                }
+            }
+            else {
+                rsupdate = pstmt.executeUpdate();
+                if ( rsupdate<=1) {
+                    returns = "success";
+                } else {
+                    returns = "fail";
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

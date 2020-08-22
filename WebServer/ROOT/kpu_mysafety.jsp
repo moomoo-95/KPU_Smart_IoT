@@ -4,10 +4,16 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
-	String type = "mySafety";
+        String name = request.getParameter("name");
+	String type = request.getParameter("type");
 	ConnectDB connectDB = ConnectDB.getInstance();
 	if( type.equals("mySafety") ) {
-		String returns = connectDB.mySafety(id);
+		String returns = connectDB.mySafety(id, name, 1);
 		out.println(returns);
-	};
+	}
+        else if( type.equals("nowSafety") ) {
+                String returns = connectDB.mySafety(id, name, 2);
+                out.println(returns);
+        }
+
 %>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="javamysql.testAr"%>
+<%@ page import="javamysql.selectInfo"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String open_close = request.getParameter("motor");
@@ -9,23 +10,18 @@
 	String gyro_y = request.getParameter("gyro_y");
 	String gyro_z = request.getParameter("gyro_z");
 	String infra = request.getParameter("infra");
-	String user = request.getParameter("user");
-	String equ = request.getParameter("equ");
-	String state = request.getParameter("state");
+	String user = "28";
+	String equ = "18";
+	String state = "0";
+	
+	testAr connectDBA = testAr.getInstance();
+        String oac = connectDBA.safetyOpen( open_close, user, equ, state );
+        String oscill = connectDBA.safetyOscill( oscillation, user, equ, state );
+        String gyro = connectDBA.safetyGyro( gyro_x, gyro_y, gyro_z, user, equ, state );
+        String infr = connectDBA.safetyInfra( infra, user, equ, state );
 
-	testAr connectDB = testAr.getInstance();
+	selectInfo connectDB = selectInfo.getInstance();
+	String result = connectDB.selectSafetyInfo(equ, user, state);
 
-	String open_return = connectDB.safetyOpen(open_close,user,equ,state);
-	String oscill_return = connectDB.safetyOscill(oscillation,user,equ,state);
-	String gyro_return = connectDB.safetyGyro(gyro_x, gyro_y, gyro_z,user,equ,state);
-	String infra_return = connectDB.safetyInfra(infra,user,equ,state);
-
-        out.println("<p>"+open_return+"</p>");
-	out.println("<p>"+oscill_return+"</p>");
-	out.println("<p>"+gyro_return+"</p>");
-	out.println("<p>"+infra_return+"</p>");
+	out.println(result);
 %>
-<%="open_close : "+open_return%>
-<%="oscillation : "+oscill_return%>
-<%="gyro : "+gyro_return%>
-<%="infra : "+infra_return%>
