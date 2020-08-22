@@ -89,7 +89,7 @@
                     android:singleLine="true"
                     android:maxLength="20"
                     android:height="50dp"
-                    android:textColorHint="@color/colorPrimaryText"/>
+                    android:textColor="@color/colorPrimaryText"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                     android:singleLine="true"
                     android:maxLength="20"
                     android:height="50dp"
-                    android:textColorHint="@color/colorPrimaryText"/>
+                    android:textColor="@color/colorPrimaryText"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:singleLine="true"
                     android:maxLength="20"
                     android:height="50dp"
-                    android:textColorHint="@color/colorPrimaryText"/>
+                    android:textColor="@color/colorPrimaryText"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
