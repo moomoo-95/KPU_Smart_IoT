@@ -103,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
                 sendMsg = "id="+strings[0]+"&type="+strings[1];
                 osw.write(sendMsg);
                 osw.flush();
-                System.out.println(sendMsg);
+//                System.out.println(sendMsg);
                 if(conn.getResponseCode() == conn.HTTP_OK) {
                     InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                     BufferedReader reader = new BufferedReader(tmp);
                     StringBuffer buffer = new StringBuffer();
                     while ((str = reader.readLine()) != null) {
-                        System.out.println(str);
+//                        System.out.println(str);
                         buffer.append(str);
                     }
                     receiveMsg = buffer.toString();
@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             if(v.getId()== R.id.menu_ico){
                 Intent intent = new Intent(getApplicationContext(), MyPage.class);
                 intent.putExtra("ID",Session_ID);
-                //intent.putExtra("door_state",false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

@@ -159,6 +159,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
                     intent.putExtra("ID",Session_ID);
                     intent.putExtra("safe_name",safe_n);
                     intent.putExtra("safe_date",safe_d);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 //Log.e(this.getClass().getName(), rec.recognize(images.get(i), "")+"와우");

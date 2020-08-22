@@ -66,6 +66,7 @@ public class FingerInterface extends AppCompatActivity {
                             intent.putExtra("ID",Session_ID);
                             intent.putExtra("safe_name",safe_n);
                             intent.putExtra("safe_date",safe_d);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
 

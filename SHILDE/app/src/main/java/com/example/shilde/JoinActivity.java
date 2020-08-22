@@ -145,7 +145,9 @@ public class JoinActivity extends AppCompatActivity {
                             userPwdC.setText("");
                         } else if(result.equals("ok")) {
                             Toast.makeText(JoinActivity.this,"회원가입을 축하드립니다.",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(v.getContext(), LoginActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         }
                     }catch (Exception e) {}
                 }
