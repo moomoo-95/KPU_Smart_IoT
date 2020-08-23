@@ -52,7 +52,7 @@ void setup() {
   //sendData("AT+CWLAP\r\n", 3000, DEBUG); // list available access points
   sendData("AT+CWJAP=\"AndroidHotspot5044\",\"0325274715\"\r\n", 6000, DEBUG); // join the access point
   delay(1500);
-  
+
   lcd.backlight();
   lcd.setCursor(0, 1);
   lcd.print("   WiFi Connected");
@@ -86,7 +86,7 @@ void loop()
     lcd.setCursor(0, 2);
     lcd.print("      Safe Now       ");
   }
-  else if ((Dig_PIR == 1) || ( Dig_Vib != NULL) && (GyX != NULL || GyY != NULL || GyZ != NULL))
+  else if ((Dig_PIR == 1) || (( Dig_Vib >= 6000) && (GyX != NULL || GyY != NULL || GyZ != NULL)))
   {
     lcd.backlight();
     lcd.setCursor(0, 2);
@@ -153,7 +153,7 @@ void loop()
 
 
   delay(2000);
-  
+
   String str_close = sendData("AT+CIPCLOSE=0\r\n", 1000, DEBUG);
   int index_disconnect = str_close.indexOf("CLOSED"); //indexOf(찾을 문자)
 
