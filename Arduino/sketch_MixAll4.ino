@@ -47,12 +47,12 @@ void setup() {
   Serial.begin(9600);
   esp8266.begin(9600); //WiFi 시리얼 개방
 
-
   //WiFi
   sendData("AT+CWMODE=3\r\n", 1000, DEBUG); // configure as access point (working mode: AP+STA)
   //sendData("AT+CWLAP\r\n", 3000, DEBUG); // list available access points
   sendData("AT+CWJAP=\"AndroidHotspot5044\",\"0325274715\"\r\n", 6000, DEBUG); // join the access point
-  delay(3000);
+  delay(1500);
+  
   lcd.backlight();
   lcd.setCursor(0, 1);
   lcd.print("   WiFi Connected");
@@ -91,11 +91,11 @@ void loop()
     lcd.backlight();
     lcd.setCursor(0, 2);
     lcd.print("***Alert Movement***");
-    delay(250);
+    delay(150);
     lcd.noBacklight();
-    delay(250);
+    delay(150);
     lcd.backlight();
-    delay(250);
+    delay(150);
     lcd.noBacklight();
   }
 
@@ -121,13 +121,6 @@ void loop()
   dataCommand += " HTTP/1.1\r\nHost: 101.101.219.143\r\n\r\n";
 
 
-  delay(1000);
-
-  Serial.println("*************************************************************");
-  Serial.println(dataCommand);
-
-
-
   //WiFi_길이 파악을 위해 얘를 나중에 생성
   String sendCommand = "AT+CIPSEND=0,";
   sendCommand += dataCommand.length();
@@ -146,7 +139,6 @@ void loop()
   WiFi_status02 = WiFi_response.substring(index_status02, index_status02 + 4);
 
 
-
   servo_WiFi();
 
 
@@ -156,15 +148,21 @@ void loop()
   }
   else if (WiFi_status02 == "OS02") //서보모터 열림
   {
-
     servo_OPEN();
   }
 
+
   delay(2000);
+  
+  String str_close = sendData("AT+CIPCLOSE=0\r\n", 1000, DEBUG);
+  int index_disconnect = str_close.indexOf("CLOSED"); //indexOf(찾을 문자)
 
 
-  //WiFi_서버연결
-  // sendData("AT+CIPSTART=0,\"TCP\",\"101.101.219.143\",8080\r\n", 1000, DEBUG); //Connect to Server
+  //WiFi_서버 연결 끊길시 재연결
+  if ( index_disconnect == 18 )
+  {
+    sendData("AT+CIPSTART=0,\"TCP\",\"101.101.219.143\",8080\r\n", 1000, DEBUG); //Connect to Server
+  }
 
 }
 
