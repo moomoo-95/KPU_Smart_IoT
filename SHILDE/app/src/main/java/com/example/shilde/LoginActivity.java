@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.d("ACTIVITY_LC","SAFETY");
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        // 사용자에게 짧은 메세지 전달
-        Toast.makeText(getApplicationContext(),"환영합니다.",Toast.LENGTH_SHORT).show();
+//        // 사용자에게 짧은 메세지 전달
+//        Toast.makeText(getApplicationContext(),"환영합니다.",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -77,14 +77,14 @@ public class LoginActivity extends AppCompatActivity {
                 sendMsg = "id="+strings[0]+"&pwd="+strings[1]+"&type="+strings[2];
                 osw.write(sendMsg);
                 osw.flush();
-                System.out.println(sendMsg);
-                System.out.println(conn.getResponseCode());
+//                System.out.println(sendMsg);
+//                System.out.println(conn.getResponseCode());
                 if(conn.getResponseCode() == conn.HTTP_OK) {
                     InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
                     BufferedReader reader = new BufferedReader(tmp);
                     StringBuffer buffer = new StringBuffer();
                     while ((str = reader.readLine()) != null) {
-                        System.out.println(str);
+//                        System.out.println(str);
                         buffer.append(str);
                     }
                     receiveMsg = buffer.toString();
@@ -107,7 +107,9 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View v) {
             // 회원가입 Paging
             if(v.getId() == R.id.join){
-                startActivity(new Intent(getApplicationContext(), JoinActivity.class));
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
             // 로그인 Paging
             if(v.getId() == R.id.login) {
@@ -150,11 +152,15 @@ public class LoginActivity extends AppCompatActivity {
             }
             // 아이디 찾기 페이지
             if(v.getId() == R.id.find_id){
-                startActivity(new Intent(getApplicationContext(), FindIdActivity.class));
+                Intent intent = new Intent(getApplicationContext(), FindIdActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
             // 비밀번호 찾기 페이지
             if(v.getId() == R.id.find_pw){
-                startActivity(new Intent(getApplicationContext(), FindPasswordActivity.class));
+                Intent intent = new Intent(getApplicationContext(), FindPasswordActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         }
     };
