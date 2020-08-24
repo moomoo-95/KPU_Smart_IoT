@@ -67,7 +67,7 @@ public class multi_modal extends AppCompatActivity {
             @Override
             public void run() {
                 circleProgressBar.setProgress(i);
-                if(i > 80) {
+                if(i > 20) {
                     try {
                         String result = new multi_modal.openCustomTask().execute(Session_ID, safe_n, "opencheck").get();
                         if (result.compareTo("success") == 0) {

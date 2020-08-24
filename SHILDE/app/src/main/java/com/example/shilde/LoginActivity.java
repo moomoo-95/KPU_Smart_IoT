@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.example.shilde.Activities.AddPersonPreviewActivity;
 import com.example.shilde.biometriclib.FingerInterface;
 import com.example.shilde.facerecognitionlibrary.Helpers.FileHelper;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,6 +44,12 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//        FirebaseMessaging.getInstance().subscribeToTopic("news");
+//        FirebaseInstanceId.getInstance().getToken();
+//        String token = FirebaseInstanceId.getInstance().getToken();
+//        Log.d("Main","token :"+token);
+//        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_LONG).show();
 
         userId = (EditText) findViewById(R.id.input_id); // 아이디
         userPwd = (EditText) findViewById(R.id.input_pw); // 비밀번호

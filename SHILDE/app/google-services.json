@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "691968926851",
+    "firebase_url": "https://kpuiot.firebaseio.com",
+    "project_id": "kpuiot",
+    "storage_bucket": "kpuiot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691968926851:android:c63f10845a8038bd75e7b6",
+        "android_client_info": {
+          "package_name": "com.example.shilde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691968926851-u2232glf4crj6l2e6dre5bsjko2uve1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEB1gXug3vi5HYYIvcok5OaY-ZZ4Jeyo8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691968926851-u2232glf4crj6l2e6dre5bsjko2uve1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

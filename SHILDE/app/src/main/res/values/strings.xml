@@ -133,4 +133,7 @@
 부칙 본 약관은 2020년 7월 1일부터 시행됩니다.   \n
 * 본 약관에 대한 저작권은 행정안전부에 귀속하며 무단 복제, 배포, 전송, 기타 저작권 침해행위를 엄금합니다.\n
     </string>
+
+    <string name="default_notification_channel_id">default_channel_id</string>
+    <string name="default_notification_channel_title">Default Channel</string>
 </resources>

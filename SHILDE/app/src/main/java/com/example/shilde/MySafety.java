@@ -71,16 +71,24 @@ public class MySafety extends AppCompatActivity {
                     now_safety_vibrate.setText("이상없음");
                     now_safety_vibrate.setTextColor(Color.parseColor("#000000"));
                 }
+                else if(result_arr2[2].compareTo("1")==0){
+                    now_safety_vibrate.setText("약한충격");
+                    now_safety_vibrate.setTextColor(Color.parseColor("#0000FF"));
+                }
                 else{
-                    now_safety_vibrate.setText("충격감지");
+                    now_safety_vibrate.setText("강한충격");
                     now_safety_vibrate.setTextColor(Color.parseColor("#0000FF"));
                 }
                 if(result_arr2[0].compareTo("0") == 0){
                     now_safety_move.setText("이상없음");
                     now_safety_move.setTextColor(Color.parseColor("#000000"));
                 }
-                else{
-                    now_safety_move.setText("위치변경");
+                else if(result_arr2[0].compareTo("1") == 0){
+                    now_safety_move.setText("약한이동");
+                    now_safety_move.setTextColor(Color.parseColor("#0000FF"));
+                }
+                else {
+                    now_safety_move.setText("강한이동");
                     now_safety_move.setTextColor(Color.parseColor("#0000FF"));
                 }
                 if(result_arr2[3].compareTo("0") == 0){
@@ -369,18 +377,34 @@ public class MySafety extends AppCompatActivity {
 //            //            else{ safety_status.setText("적외선닫힘"); }
 
             dayView.setText(list_status_day[position]);
-            if(list_status_vib[position].compareTo("0")==0){ vibView.setText("이상없음"); }
-            else{
-                vibView.setText("충격감지");
+            if(list_status_vib[position].compareTo("0")==0){
+                vibView.setText("이상없음");
+                vibView.setTextColor(Color.parseColor("#000000"));
+            }
+            else if(list_status_vib[position].compareTo("1")==0){
+                vibView.setText("약한충격");
                 vibView.setTextColor(Color.parseColor("#0000FF"));
             }
-            if(list_status_gyro[position].compareTo("0") == 0){ gyroView.setText("이상없음"); }
             else{
-                gyroView.setText("위치변경");
+                vibView.setText("강한충격");
+                vibView.setTextColor(Color.parseColor("#0000FF"));
+            }
+
+            if(list_status_gyro[position].compareTo("0") == 0){
+                gyroView.setText("이상없음");
+                gyroView.setTextColor(Color.parseColor("#000000"));
+            }
+            else if(list_status_gyro[position].compareTo("1")==0){
+                gyroView.setText("약한이동");
+                gyroView.setTextColor(Color.parseColor("#0000FF"));
+            }
+            else{
+                gyroView.setText("강한이동");
                 gyroView.setTextColor(Color.parseColor("#0000FF"));
             }
             if(list_status_open[position].compareTo("0") == 0){
                 openView.setText("CLOSE");
+                openView.setTextColor(Color.parseColor("#000000"));
             }
             else{
                 openView.setText("OPEN");
