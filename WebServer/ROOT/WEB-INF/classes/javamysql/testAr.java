@@ -86,6 +86,16 @@ public class testAr {
 		String euser = "2";
 		String eequ = "3";
 		String estate = "4";
+		
+		int input_oscil = Integer.parseInt(oscillation);
+		if( Math.abs( input_oscil) >=10000 ){
+			
+			state = "2";
+		}else if ( Math.abs( input_oscil ) >=3000 ){
+
+			state = "1";
+		};
+
                 // 장비명, 값
     		sql = "INSERT INTO oscillation_sensor( VALUE, PUBLIC_SEQ, EQU_SEQ, STATUS, MOD_TIME) VALUES(?, ?, ?, ?, NOW())";
     		pstmt = conn.prepareStatement(sql);
