@@ -141,8 +141,6 @@ void loop()
   WiFi_status02 = WiFi_response.substring(index_status02, index_status02 + 4);
 
 
-  servo_WiFi();
-
 
   if (WiFi_status01 == "OS01") // 서보모터 닫힘
   {
@@ -167,6 +165,19 @@ void loop()
   {
     sendData("AT+CIPSTART=0,\"TCP\",\"101.101.219.143\",8080\r\n", 1000, DEBUG); //Connect to Server
   }
+
+
+  sendData("AT+CWMODE=3\r\n", 1000, DEBUG); // configure as access point (working mode: AP+STA)
+  //sendData("AT+CWLAP\r\n", 3000, DEBUG); // list available access points
+  sendData("AT+CWJAP=\"AndroidHotspot5044\",\"0325274715\"\r\n", 6000, DEBUG); // join the access point
+  sendData("AT+CIPMUX=1\r\n", 1000, DEBUG); // configure for multiple connections
+  sendData("AT+CIPSERVER=1\r\n", 1000, DEBUG); // turn on server on port 80
+  sendData("AT+CIPSTART=0,\"TCP\",\"101.101.219.143\",8080\r\n", 1000, DEBUG); //Connect to Server
+
+
+
+
+
 
 }
 
@@ -201,28 +212,7 @@ void servo_CLOSE()
 }
 
 
-void servo_WiFi() //서보모터와 WiFi_status 비교
-{
 
-  if (Dig_state = 0 && WiFi_status02 == "OS02") // 서보모터는 닫힘 && WiFi_status02는 열림 상태
-  {
-
-    Dig_state = 1;
-
-    lcd.backlight();
-    lcd.setCursor(5, 3);
-    lcd.print("Safe_OPEN  ");
-  }
-  else if (Dig_state = 1 && WiFi_status01 == "OS01") // // 서보모터는 열림 && WiFi_status01는 닫힘 상태
-  {
-    Dig_state = 0;
-
-    lcd.noBacklight();
-    lcd.setCursor(5, 3);
-    lcd.print("Safe_ CLOSE");
-
-  }
-}
 
 
 String sendData(String command, const int timeout, boolean debug)
