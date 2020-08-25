@@ -240,7 +240,7 @@ public class ConnectDB {
             else{ returns = "fail"; }
             if(u_id == 0){ return returns; }
             if ( number == 1 ) {
-                sql = "SELECT gyro_status, infrared_status, oscillation_status, oac_status, status, DATE_FORMAT(mot_time, '%Y-%m-%d %T') as mot_time FROM status_change WHERE (public_seq=? and equ_seq=?) and (gyro_status=1 or oscillation_status=1 or oac_status=1) ORDER BY mot_time DESC LIMIT 20";
+                sql = "SELECT gyro_status, infrared_status, oscillation_status, oac_status, status, DATE_FORMAT(mot_time, '%Y-%m-%d %T') as mot_time FROM status_change WHERE (public_seq=? and equ_seq=?) and (gyro_status<>0 or oscillation_status<>0) ORDER BY mot_time DESC LIMIT 20";
             }
             else if( number == 2) {
                 sql = "SELECT gyro_status, infrared_status, oscillation_status, oac_status, status, DATE_FORMAT(mot_time, '%Y-%m-%d %T') as mot_time FROM status_change WHERE public_seq=? and equ_seq=? ORDER BY mot_time DESC LIMIT 1";
