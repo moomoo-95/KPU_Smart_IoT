@@ -85,7 +85,7 @@ public class multi_modal extends AppCompatActivity {
                     }
                 }
                 if(i < 90){
-                    i += 8;
+                    i += 4;
                 }
             }
         };

@@ -157,7 +157,8 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = rowView.findViewById(R.id.safe_image);
             TextView nameView = rowView.findViewById(R.id.safe_name);
             TextView dateView = rowView.findViewById(R.id.safe_date);
-
+            if (position == 0){ imageView.setImageResource(R.drawable.sample_safe1); }
+            else{ imageView.setImageResource(R.drawable.sample_safe2); }
             nameView.setText(names[position]);
             dateView.setText("등록일 : "+days[position]);
             return rowView;
