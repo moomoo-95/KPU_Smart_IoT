@@ -24,4 +24,5 @@
 	String result = connectDB.selectSafetyInfo(equ, user, state);
 
 	out.println(result);
+	out.println("TEXTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 %>
